@@ -330,7 +330,6 @@ TS1, TS2 = get_timeseries(OPTS.infile1[0], OPTS.infile2[0], OPTS.verbose, \
 
 DT = OPTS.dt[0]
 N = np.around((OPTS.lgh[0] - OPTS.lgl[0]) / float(DT))
-N += 1 if not np.mod(N,2) else 0 # make it even for zero lag check
 
 T = np.linspace(OPTS.lgl[0]+(DT/2.0), OPTS.lgh[0]-(DT/2.0), int(N))
 
