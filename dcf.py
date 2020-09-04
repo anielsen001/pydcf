@@ -380,8 +380,7 @@ if OPTS.noplot:
         sys.exit()
 
     plt.figure(0)
-    #plt.errorbar(T, DCF, DCFERR, color='k', ls='-', capsize=0)
-    plt.plot(T,DCF,'o')
+    plt.errorbar(T, DCF, DCFERR, color='k', ls='-', capsize=0)
     plt.xlabel("Lag")
     plt.ylabel("Correlation Coefficient")
     plt.xlim(OPTS.lgl[0], OPTS.lgh[0])
