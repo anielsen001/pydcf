@@ -330,7 +330,9 @@ TS1, TS2 = get_timeseries(OPTS.infile1[0], OPTS.infile2[0], OPTS.verbose, \
 
 DT = OPTS.dt[0]
 N = np.around((OPTS.lgh[0] - OPTS.lgl[0]) / float(DT))
-T = np.linspace(OPTS.lgl[0]+(DT/2.0), OPTS.lgh[0]-(DT/2.0), N)
+N += 1 if not np.mod(N,2) else 0 # make it even for zero lag check
+
+T = np.linspace(OPTS.lgl[0]+(DT/2.0), OPTS.lgh[0]-(DT/2.0), int(N))
 
 if OPTS.weight[0] == 'slot':
 
@@ -379,7 +381,8 @@ if OPTS.noplot:
         sys.exit()
 
     plt.figure(0)
-    plt.errorbar(T, DCF, DCFERR, color='k', ls='-', capsize=0)
+    #plt.errorbar(T, DCF, DCFERR, color='k', ls='-', capsize=0)
+    plt.plot(T,DCF,'o')
     plt.xlabel("Lag")
     plt.ylabel("Correlation Coefficient")
     plt.xlim(OPTS.lgl[0], OPTS.lgh[0])
